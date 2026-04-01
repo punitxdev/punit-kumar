@@ -2,7 +2,7 @@
 const GITHUB_USERNAME = 'punitxdev';
 
 // EXCLUDED REPOS (Case Insensitive)
-const EXCLUDED_REPOS = ['dropdoubt'];
+const EXCLUDED_REPOS = ['dropdoubt', 'punit-kumar'];
 
 // FUTURE PROJECT NAME (To highlight it specially)
 const FUTURE_PROJECT_NAME = 'buildspherex';
