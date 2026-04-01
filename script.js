@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Typing Animation — cycles through roles
 function initTypingAnimation() {
-    const phrases = ["Punit Kumar", "a Web Developer", "an AI/ML Enthusiast", "a Competitive Programmer", "a Problem Solver", "a Full Stack Builder"];
+    const phrases = ["Punit Kumar", "a Web Developer", "an AI/ML Enthusiast", "a Problem Solver", "a Full Stack Builder"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
