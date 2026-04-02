@@ -10,7 +10,7 @@ const FUTURE_PROJECT_NAME = 'buildspherex';
 // CUSTOM PROJECT DATA — unique descriptions & tags per repo
 const PROJECT_DATA = {
     'buildspherex': {
-        description: 'An exclusive initiative for IIT Dharwad. A unified platform to empower students with collaborative development tools, AI-powered code insights, and cloud-first workflows. Because the future of building starts right here, from our campus to the world.',
+        description: 'A student-driven platform from IIT Dharwad to turn ideas into real products. BuildSphereX connects builders, enables rapid collaboration, and integrates AI-powered development tools to accelerate innovation from campus to startup.',
         tags: ['React', 'Node.js', 'AI', 'IIT Dharwad']
     },
     'smart-clustering': {
