@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills & Arsenal | Punit Kumar</title>
+    <meta name="description" content="Technical skills, languages, tools, and expertise of Punit Kumar in Web Development, Machine Learning, Data Structures, and Physics Simulations.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Neumorphic Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="background-animation">
+        <div class="ambient-glow ambient-1"></div>
+        <div class="ambient-glow ambient-2"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon"><i class="fas fa-code"></i></div>
+            <span>Punit<span class="gradient-text">.</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certs</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html" class="nav-cta">Connect</a>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button class="neu-theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation" style="margin-left: 0.8rem;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer">
+        <a href="index.html">Home</a>
+        <a href="skills.html" class="active">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="vision.html">Vision & About</a>
+        <a href="contact.html">Contact Me</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="wrapper">
+            <h1>Arsenal & <span class="gradient-text">Expertise</span></h1>
+            <p>A comprehensive overview of my technical stack, engineering domains, and software skills.</p>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="wrapper">
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab skill-filter-tab active" data-category="all">All Skills</button>
+                <button class="filter-tab skill-filter-tab" data-category="web">Web Development</button>
+                <button class="filter-tab skill-filter-tab" data-category="ai">AI / ML & Physics</button>
+                <button class="filter-tab skill-filter-tab" data-category="cp">CP & Algorithms</button>
+                <button class="filter-tab skill-filter-tab" data-category="tools">Languages & Tools</button>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="neu-card skill-card" data-category="ai">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--primary);"><i class="fas fa-atom"></i></div>
+                        <div>
+                            <h3>Physics Simulation & Modeling</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Computational Systems</p>
+                        </div>
+                    </div>
+                    <p>Building simulations by translating physical laws into mathematical models and interactive HTML5 canvas rendering engines.</p>
+                    <div class="lang-tags">
+                        <span>Rotational Motion</span>
+                        <span>Helical Particle</span>
+                        <span>Photoelectric</span>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="neu-card skill-card" data-category="cp">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--accent-orange);"><i class="fas fa-code"></i></div>
+                        <div>
+                            <h3>Problem Solver</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">LeetCode & DSA</p>
+                        </div>
+                    </div>
+                    <p>Solved <strong>200+ algorithm problems</strong> on LeetCode with strong intuition in Dynamic Programming, Graphs, Trees, and Optimization.</p>
+                    <div class="lang-tags">
+                        <span>C++</span>
+                        <span>Data Structures</span>
+                        <span>LeetCode</span>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="neu-card skill-card" data-category="cp">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--accent);"><i class="fas fa-trophy"></i></div>
+                        <div>
+                            <h3>Competitive Programming</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Contests & Challenges</p>
+                        </div>
+                    </div>
+                    <p>Active participant in online CP platforms and contests, transforming complex problem constraints into efficient code.</p>
+                    <div class="lang-tags">
+                        <span>Algorithms</span>
+                        <span>Big-O Optimization</span>
+                        <span>C++ STL</span>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="neu-card skill-card" data-category="web">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--secondary);"><i class="fab fa-react"></i></div>
+                        <div>
+                            <h3>Web Development</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Modern Frontend</p>
+                        </div>
+                    </div>
+                    <p>Designing modern, responsive, accessible web applications with clean design aesthetics and smooth micro-animations.</p>
+                    <div class="lang-tags">
+                        <span>React</span>
+                        <span>HTML5</span>
+                        <span>CSS3 / Vanilla</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="neu-card skill-card" data-category="tools">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--accent-green);"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h3>Hackathon Enthusiast</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">IIT Dharwad Events</p>
+                        </div>
+                    </div>
+                    <p>Active participant in Parsec events (<strong>DevHack, Singularity, Build-A-Bot</strong>) building hackathon projects under rapid deadlines.</p>
+                    <div class="lang-tags">
+                        <span>DevHack</span>
+                        <span>Singularity</span>
+                        <span>Team Lead</span>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="neu-card skill-card" data-category="ai">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--accent-gold);"><i class="fas fa-brain"></i></div>
+                        <div>
+                            <h3>Exploring AI / ML</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Machine Learning</p>
+                        </div>
+                    </div>
+                    <p>Supervised regression/classification, K-Means clustering, DBSCAN algorithms, stock market forecasting, and disease detection models.</p>
+                    <div class="lang-tags">
+                        <span>Python</span>
+                        <span>Scikit-Learn</span>
+                        <span>Flask</span>
+                        <span>Pandas</span>
+                    </div>
+                </div>
+
+                <!-- Skill 7 -->
+                <div class="neu-card skill-card" data-category="tools">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--accent-orange);"><i class="fas fa-laptop-code"></i></div>
+                        <div>
+                            <h3>Language Proficiency</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Programming Core</p>
+                        </div>
+                    </div>
+                    <p>Polyglot coder comfortable in low-level systems programming, high-level object-oriented logic, and web scripting.</p>
+                    <div class="lang-tags">
+                        <span>C</span>
+                        <span>C++</span>
+                        <span>Python</span>
+                        <span>Java</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- Skill 8 -->
+                <div class="neu-card skill-card" data-category="web">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--primary);"><i class="fas fa-gamepad"></i></div>
+                        <div>
+                            <h3>Interactive UI / Canvas</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">User Experience</p>
+                        </div>
+                    </div>
+                    <p>Building interactive algorithmic visualizers, dynamic chart systems, and visual tools for computer science education.</p>
+                    <div class="lang-tags">
+                        <span>Canvas API</span>
+                        <span>Chart.js</span>
+                        <span>Neumorphism</span>
+                    </div>
+                </div>
+
+                <!-- Skill 9 -->
+                <div class="neu-card skill-card" data-category="web">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-box" style="color: var(--secondary);"><i class="fas fa-layer-group"></i></div>
+                        <div>
+                            <h3>Full Stack Architecture</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Backend & Databases</p>
+                        </div>
+                    </div>
+                    <p>End-to-end development from frontend views to Node.js/Express APIs, MongoDB databases, and cloud deployment.</p>
+                    <div class="lang-tags">
+                        <span>Node.js</span>
+                        <span>Express</span>
+                        <span>MongoDB</span>
+                        <span>REST APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper footer-content">
+            <p>&copy; 2026 Punit Kumar. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/punitxdev" target="_blank" class="neu-icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/punit-kumar-kashyap-9589b7373/" target="_blank" class="neu-icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ep25bt003@iitdh.ac.in" class="neu-icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

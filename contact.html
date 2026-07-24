@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Connect | Punit Kumar</title>
+    <meta name="description" content="Connect with Punit Kumar for tech collaborations, hackathons, open source projects, and software engineering opportunities.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Neumorphic Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="background-animation">
+        <div class="ambient-glow ambient-1"></div>
+        <div class="ambient-glow ambient-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon"><i class="fas fa-code"></i></div>
+            <span>Punit<span class="gradient-text">.</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certs</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html" class="active nav-cta">Connect</a>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button class="neu-theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation" style="margin-left: 0.8rem;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer">
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="vision.html">Vision & About</a>
+        <a href="contact.html" class="active">Contact Me</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="wrapper">
+            <h1>Let's Build Something <span class="gradient-text">Amazing</span></h1>
+            <p>Always open for tech collaborations, hackathon brainstorming, or discussing innovative software ideas.</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="wrapper">
+            <div class="contact-grid">
+                <!-- Left: Direct Contact Information -->
+                <div class="contact-info">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Direct <span class="gradient-text">Channels</span></h2>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;">
+                        Feel free to reach out directly through any of the channels below. I respond quickly!
+                    </p>
+
+                    <div class="contact-info-list">
+                        <a href="mailto:ep25bt003@iitdh.ac.in" class="neu-card contact-item-card">
+                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-item-text">
+                                <h4>Email Me</h4>
+                                <span>ep25bt003@iitdh.ac.in</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/punit-kumar-kashyap-9589b7373/" target="_blank" class="neu-card contact-item-card">
+                            <div class="contact-item-icon" style="color: var(--secondary);"><i class="fab fa-linkedin-in"></i></div>
+                            <div class="contact-item-text">
+                                <h4>LinkedIn</h4>
+                                <span>punit-kumar-kashyap</span>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/punitxdev" target="_blank" class="neu-card contact-item-card">
+                            <div class="contact-item-icon" style="color: var(--accent);"><i class="fab fa-github"></i></div>
+                            <div class="contact-item-text">
+                                <h4>GitHub</h4>
+                                <span>github.com/punitxdev</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Neumorphic Form -->
+                <div class="neu-card contact-form-card">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Send a <span class="gradient-text">Message</span></h2>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required class="form-input-neu" placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required class="form-input-neu" placeholder="john@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required class="form-input-neu" placeholder="Project / Collaboration / Discussion">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required class="form-input-neu" placeholder="Hi Punit, I would love to connect about..."></textarea>
+                        </div>
+
+                        <button type="submit" class="neu-btn neu-btn-primary submit-btn" style="width: 100%; font-size: 1.05rem;">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper footer-content">
+            <p>&copy; 2026 Punit Kumar. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/punitxdev" target="_blank" class="neu-icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/punit-kumar-kashyap-9589b7373/" target="_blank" class="neu-icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ep25bt003@iitdh.ac.in" class="neu-icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

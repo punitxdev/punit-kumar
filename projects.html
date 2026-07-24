@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Showcase | Punit Kumar</title>
+    <meta name="description" content="Explore open-source projects, web applications, machine learning models, and physics simulations developed by Punit Kumar.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Neumorphic Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="background-animation">
+        <div class="ambient-glow ambient-1"></div>
+        <div class="ambient-glow ambient-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-icon"><i class="fas fa-code"></i></div>
+            <span>Punit<span class="gradient-text">.</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="certifications.html">Certs</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html" class="nav-cta">Connect</a>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button class="neu-theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation" style="margin-left: 0.8rem;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer">
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="vision.html">Vision & About</a>
+        <a href="contact.html">Contact Me</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="wrapper">
+            <h1>Featured <span class="gradient-text">Projects</span></h1>
+            <p>A showcase of my recent software projects, open-source repositories, ML applications, and interactive simulations.</p>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="wrapper">
+
+            <!-- Search & Filter Bar -->
+            <div class="search-filter-container">
+                <div class="neu-search-box" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="project-search" placeholder="Search projects by keyword, tech stack, or description...">
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab project-filter-tab active" data-category="all">All Repositories</button>
+                    <button class="filter-tab project-filter-tab" data-category="web">Web Apps</button>
+                    <button class="filter-tab project-filter-tab" data-category="ai">AI / ML & Sims</button>
+                    <button class="filter-tab project-filter-tab" data-category="cp">DSA & CP</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-container" id="projects-container">
+                <div class="loading-spinner">
+                    <div class="spinner-neu"><i class="fas fa-sync-alt"></i></div>
+                    <p style="color: var(--text-muted);">Fetching repositories from GitHub (@punitxdev)...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper footer-content">
+            <p>&copy; 2026 Punit Kumar. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/punitxdev" target="_blank" class="neu-icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/punit-kumar-kashyap-9589b7373/" target="_blank" class="neu-icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ep25bt003@iitdh.ac.in" class="neu-icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

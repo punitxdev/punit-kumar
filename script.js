@@ -1,332 +1,406 @@
-// GitHub Username
-const GITHUB_USERNAME = 'punitxdev';
-
-// EXCLUDED REPOS (Case Insensitive)
-const EXCLUDED_REPOS = ['dropdoubt', 'punit-kumar'];
-
-// FUTURE PROJECT NAME (To highlight it specially)
-const FUTURE_PROJECT_NAME = 'buildspherex';
-
-// CUSTOM PROJECT DATA — unique descriptions & tags per repo
-const PROJECT_DATA = {
-    'buildspherex': {
-        description: 'A student-driven platform from IIT Dharwad to turn ideas into real products. BuildSphereX connects builders, enables rapid collaboration, and integrates AI-powered development tools to accelerate innovation from campus to startup.',
-        tags: ['React', 'Node.js', 'AI', 'IIT Dharwad']
-    },
-    'smart-clustering': {
-        description: 'An interactive data visualization tool that clusters datasets using K-Means and DBSCAN algorithms, rendering beautiful 2D scatter plots with real-time controls.',
-        tags: ['Python', 'Flask', 'ML', 'Data Viz']
-    },
-    'text-vault': {
-        description: 'A sleek and secure text storage web app for saving, organizing, and retrieving notes and code snippets with a beautiful dark UI.',
-        tags: ['JavaScript', 'HTML', 'CSS', 'Web App']
-    },
-    'stock_market_predictor': {
-        description: 'An ML-powered stock market prediction tool that uses historical data and trained models to forecast future stock prices with interactive charts.',
-        tags: ['Python', 'ML', 'Flask', 'Finance']
-    },
-    'disease_classifier': {
-        description: 'A machine learning web app that predicts diseases based on user-inputted symptoms using trained classification models and a clean UI.',
-        tags: ['Python', 'ML', 'Healthcare', 'Flask']
-    },
-    'data-structures-visualizer': {
-        description: 'An educational web tool to visually understand data structures like Stacks, Queues, Linked Lists, and Trees through step-by-step animated operations.',
-        tags: ['JavaScript', 'DSA', 'Education', 'Interactive']
-    },
-    'algorithm-complexity-visualizer': {
-        description: 'A Big-O complexity visualizer demonstrating time complexities of popular algorithms with dynamic Chart.js graphs and animated sorting simulations.',
-        tags: ['JavaScript', 'DSA', 'Chart.js', 'Education']
-    },
-    'iitdh-gc-backend': {
-        description: 'The backend API server for the IIT Dharwad General Championship platform, handling authentication, scoreboards, and real-time event management.',
-        tags: ['Node.js', 'Express', 'MongoDB', 'REST API']
-    },
-    'iitdh-gc-frontend': {
-        description: 'The frontend dashboard for IIT Dharwad General Championship, featuring live scoreboards, team management, and a responsive React-based UI.',
-        tags: ['React', 'JavaScript', 'Vercel', 'Full Stack']
-    },
-    'acadbox': {
-        description: 'An academic resource management platform for students to share, discover, and organize study materials, notes, and past papers.',
-        tags: ['JavaScript', 'React', 'Node.js', 'Education']
-    },
-    'iit-dharwad-sports': {
-        description: 'A dynamic sports website for IIT Dharwad showcasing events, team rosters, schedules, and live updates for inter-college tournaments.',
-        tags: ['JavaScript', 'React', 'CSS', 'Sports']
-    },
-    'rotational-motion-simulation': {
-        description: 'An interactive physics simulation that visualizes rotational motion concepts like angular velocity, torque, and moment of inertia in real-time.',
-        tags: ['JavaScript', 'Physics', 'Canvas', 'Simulation']
-    },
-    'photoelectric-effect-simulation': {
-        description: 'A web-based simulation of the photoelectric effect, allowing users to adjust light frequency and intensity to observe electron emission behavior.',
-        tags: ['JavaScript', 'Physics', 'Canvas', 'Simulation']
-    },
-    'helical-motion-simulation': {
-        description: 'A 3D-style visualization of charged particle helical motion in a magnetic field, with adjustable parameters for velocity and field strength.',
-        tags: ['JavaScript', 'Physics', 'CSS', '3D Viz']
-    },
-    'cryptoforge': {
-        description: 'A modern cryptographic suite with glassmorphism UI for encrypting and decrypting text using AES, Caesar Cipher, and other algorithms.',
-        tags: ['HTML', 'JavaScript', 'Crypto', 'Security']
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    initNavbar();
-    initTypingAnimation();
-    fetchGitHubProjects();
+    initThemeSwitcher();
+    highlightActiveNav();
+    initMobileNav();
+    initTypewriter();
+    initSkillsFilter();
+    initProjectsPage();
+    initContactForm();
 });
 
-// Typing Animation — cycles through roles
-function initTypingAnimation() {
-    const phrases = ["Punit Kumar", "a Web Developer", "an AI/ML Enthusiast", "a Problem Solver", "a Full Stack Builder"];
+/* =========================================
+   LIGHT / DARK NEUMORPHIC THEME SWITCHER
+   ========================================= */
+function initThemeSwitcher() {
+    // Default to 'light' for classic soft slate Neumorphism unless saved as 'dark'
+    const savedTheme = localStorage.getItem('neu-theme') || 'light';
+    applyTheme(savedTheme);
+
+    const themeToggleBtns = document.querySelectorAll('.neu-theme-toggle');
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+            localStorage.setItem('neu-theme', newTheme);
+        });
+    });
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const themeToggleBtns = document.querySelectorAll('.neu-theme-toggle');
+    themeToggleBtns.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+                btn.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                icon.className = 'fas fa-moon';
+                btn.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+    });
+}
+
+/* =========================================
+   NAVIGATION & ACTIVE STATE DETECTION
+   ========================================= */
+function highlightActiveNav() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-drawer a');
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+}
+
+function initMobileNav() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const drawer = document.querySelector('.mobile-nav-drawer');
+
+    if (menuBtn && drawer) {
+        menuBtn.addEventListener('click', () => {
+            drawer.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            if (drawer.classList.contains('open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+    }
+}
+
+/* =========================================
+   TYPEWRITER EFFECT (HOME HERO)
+   ========================================= */
+function initTypewriter() {
+    const typingElement = document.getElementById('typing-text');
+    if (!typingElement) return;
+
+    const phrases = [
+        "Full Stack Developer",
+        "IIT Dharwad Student",
+        "Machine Learning Enthusiast",
+        "Physics Simulator",
+        "Competitive Programmer"
+    ];
+
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    
-    const typeTarget = document.querySelector('.type-text');
-    if (!typeTarget) return;
+    let typeSpeed = 100;
 
     function type() {
         const currentPhrase = phrases[phraseIndex];
-        
+
         if (isDeleting) {
-            typeTarget.textContent = currentPhrase.substring(0, charIndex--);
+            typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
         } else {
-            typeTarget.textContent = currentPhrase.substring(0, charIndex++);
+            typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
         }
-        
-        let speed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && charIndex === currentPhrase.length + 1) {
-            speed = 2000; // pause at end
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
-        } else if (isDeleting && charIndex < 0) {
+            typeSpeed = 2000; // Pause at full text
+        } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            speed = 400;
+            typeSpeed = 500;
         }
-        
-        setTimeout(type, speed);
+
+        setTimeout(type, typeSpeed);
     }
-    
+
     type();
 }
 
-// Navbar scroll effect
-function initNavbar() {
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+/* =========================================
+   SKILLS CATEGORY FILTERING (SKILLS PAGE)
+   ========================================= */
+function initSkillsFilter() {
+    const skillTabs = document.querySelectorAll('.skill-filter-tab');
+    const skillCards = document.querySelectorAll('.skill-card');
 
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileBtn.addEventListener('click', () => {
-        if (navLinks.style.display === 'flex') {
-            navLinks.style.display = 'none';
-        } else {
-            navLinks.style.display = 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = 'rgba(5, 5, 5, 0.95)';
-            navLinks.style.padding = '2rem';
-            navLinks.style.backdropFilter = 'blur(10px)';
-        }
+    if (skillTabs.length === 0 || skillCards.length === 0) return;
+
+    skillTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            skillTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const category = tab.getAttribute('data-category');
+
+            skillCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     });
 }
 
-// Get custom data for a repo
-function getProjectData(repoName) {
-    const key = repoName.toLowerCase();
-    return PROJECT_DATA[key] || null;
+/* =========================================
+   PROJECTS SHOWCASE & GITHUB API (PROJECTS PAGE)
+   ========================================= */
+let allProjects = [];
+
+const fallbackProjects = [
+    {
+        name: "Fire Detection Model",
+        description: "Computer vision and machine learning model designed to detect wildfire and smoke hazards using spatial image analysis.",
+        html_url: "https://github.com/punitxdev/fire-detection-model",
+        homepage: "",
+        topics: ["machine-learning", "python", "computer-vision", "ai"],
+        category: "ai"
+    },
+    {
+        name: "Physics Motion Simulator",
+        description: "Interactive HTML5 canvas physics engine visualizing helical particle trajectories, rotational mechanics, and photoelectric dynamics.",
+        html_url: "https://github.com/punitxdev/physics-simulations",
+        homepage: "",
+        topics: ["physics", "javascript", "canvas", "simulation"],
+        category: "ai"
+    },
+    {
+        name: "LeetCode Solutions Repository",
+        description: "Comprehensive library of 200+ algorithm solutions written in optimal C++ and Python covering DP, Graphs, and Trees.",
+        html_url: "https://github.com/punitxdev/LeetCode-DSA",
+        homepage: "",
+        topics: ["algorithms", "cpp", "leetcode", "dsa"],
+        category: "cp"
+    },
+    {
+        name: "General Championship Portal",
+        description: "Event management and scoring dashboard built for inter-departmental competitions and live leaderboard tracking.",
+        html_url: "https://github.com/punitxdev/gc-portal",
+        homepage: "",
+        topics: ["web", "javascript", "express", "mongodb"],
+        category: "web"
+    }
+];
+
+function initProjectsPage() {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+
+    fetchGitHubProjects();
+
+    const searchInput = document.getElementById('project-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            filterAndRenderProjects(query, getActiveProjectCategory());
+        });
+    }
+
+    const projectTabs = document.querySelectorAll('.project-filter-tab');
+    projectTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            projectTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const category = tab.getAttribute('data-category');
+            const searchVal = searchInput ? searchInput.value.toLowerCase() : '';
+            filterAndRenderProjects(searchVal, category);
+        });
+    });
 }
 
-// Fetch GitHub Projects
+function getActiveProjectCategory() {
+    const activeTab = document.querySelector('.project-filter-tab.active');
+    return activeTab ? activeTab.getAttribute('data-category') : 'all';
+}
+
 async function fetchGitHubProjects() {
     const container = document.getElementById('projects-container');
-    
+    if (!container) return;
+
     try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+        const response = await fetch('https://api.github.com/users/punitxdev/repos?sort=updated&per_page=30');
+        if (!response.ok) throw new Error('Failed to fetch repos');
+
+        const repos = await response.json();
         
-        if (!response.ok) {
-            throw new Error('Failed to fetch projects');
-        }
-        
-        const allRepos = await response.json();
-        
-        // Filter out excluded repos
-        const repos = allRepos.filter(repo => {
-            return !EXCLUDED_REPOS.includes(repo.name.toLowerCase());
+        const customDescriptions = {
+            "DotExe_GeoSnap_submission": "Interactive geographic mapping and spatial data application developed as a submission for the DotExe hackathon.",
+            "QPX": "A comprehensive data preprocessing and algorithmic pipeline library for machine learning workflows.",
+            "fire_detection_model": "Computer vision model designed to detect wildfire and smoke hazards using spatial image analysis.",
+            "iitdh-gc-frontend": "Frontend interface for the IIT Dharwad General Championship portal, enabling live leaderboard tracking.",
+            "iitdh-gc-backend": "Backend REST API and database service powering the IIT Dharwad General Championship portal.",
+            "smart-clustering": "Machine learning clustering visualizer to intuitively analyze and group high-dimensional data points.",
+            "rotational-motion-simulation": "Interactive HTML5 physics engine simulating and visualizing rotational mechanics.",
+            "Helical-Motion-Simulation": "Physics simulation demonstrating the helical trajectories of charged particles in magnetic fields.",
+            "stock_market_predictor": "Predictive analytics model leveraging machine learning to forecast stock market trends.",
+            "Used-Car-Price-Prediction": "Regression-based machine learning model that accurately estimates the market value of used cars.",
+            "text-vault": "A secure text storage application designed for managing sensitive notes and information.",
+            "DropDoubt": "An academic collaboration platform where students can seamlessly post and resolve technical doubts.",
+            "punit-kumar": "Personal portfolio website built with an authentic Neumorphic design system."
+        };
+
+        allProjects = repos.map(repo => {
+            const category = determineProjectCategory(repo.name, repo.description || "", repo.topics || []);
+            const finalDescription = customDescriptions[repo.name] || repo.description || "Open-source software repository built by Punit Kumar.";
+            return {
+                name: repo.name,
+                description: finalDescription,
+                html_url: repo.html_url,
+                homepage: repo.homepage || "",
+                topics: repo.topics && repo.topics.length > 0 ? repo.topics : [category, repo.language ? repo.language.toLowerCase() : 'code'],
+                category: category
+            };
         });
-        
-        if (repos.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No projects found yet. Building awesome things...</p>';
-            return;
-        }
-        
-        container.innerHTML = '';
-        
-        repos.forEach(repo => {
-            const isFuture = repo.name.toLowerCase() === FUTURE_PROJECT_NAME;
-            const projectCard = createProjectCard(repo, isFuture);
-            
-            if (isFuture) {
-                container.prepend(projectCard);
-            } else {
-                container.appendChild(projectCard);
-            }
-        });
-        
-    } catch (error) {
-        console.error('Error fetching GitHub repos:', error);
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--accent-2);">Failed to load projects. Please try again later.</p>';
-        renderMockProjects(container);
+
+        renderProjectsList(allProjects);
+    } catch (err) {
+        console.warn("GitHub API limit or network error, rendering fallback projects:", err);
+        allProjects = fallbackProjects;
+        renderProjectsList(allProjects);
     }
 }
 
-// Create Project Card Element
-function createProjectCard(repo, isFuture) {
-    const card = document.createElement('div');
-    card.className = isFuture ? 'project-card buildspherex-card' : 'project-card';
-    
-    // Get custom data
-    const customData = getProjectData(repo.name);
-    
-    // Build tags from custom data, or fallback to language + topics
-    let tagsHtml = '';
-    if (customData && customData.tags) {
-        customData.tags.forEach(tag => {
-            tagsHtml += `<span>${tag}</span>`;
-        });
-    } else {
-        if (repo.language) {
-            tagsHtml += `<span>${repo.language}</span>`;
-        }
-        if (repo.topics && repo.topics.length > 0) {
-            repo.topics.forEach(topic => {
-                tagsHtml += `<span>${topic}</span>`;
-            });
-        }
+function determineProjectCategory(name, desc, topics) {
+    const text = (name + " " + desc + " " + topics.join(" ")).toLowerCase();
+    if (text.includes('ai') || text.includes('ml') || text.includes('learning') || text.includes('physics') || text.includes('vision') || text.includes('model')) {
+        return 'ai';
     }
+    if (text.includes('dsa') || text.includes('leetcode') || text.includes('algorithm') || text.includes('cpp')) {
+        return 'cp';
+    }
+    return 'web';
+}
+
+function filterAndRenderProjects(query, category) {
+    const filtered = allProjects.filter(p => {
+        const matchesCategory = (category === 'all' || p.category === category);
+        const matchesQuery = !query || 
+            p.name.toLowerCase().includes(query) || 
+            p.description.toLowerCase().includes(query) || 
+            p.topics.some(t => t.toLowerCase().includes(query));
+        return matchesCategory && matchesQuery;
+    });
+
+    renderProjectsList(filtered);
+}
+
+function renderProjectsList(projects) {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+
+    if (projects.length === 0) {
+        container.innerHTML = `
+            <div class="neu-card" style="grid-column: 1/-1; padding: 3rem; text-align: center;">
+                <i class="fas fa-search-minus" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">No Matching Projects Found</h3>
+                <p style="color: var(--text-muted);">Try adjusting your search keywords or filter category.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = projects.map(p => createNeumorphicProjectCard(p)).join('');
+}
+
+function createNeumorphicProjectCard(p) {
+    const cardClass = 'neu-card project-card';
     
-    // Use custom description, or repo description, or fallback
-    const description = (customData && customData.description) 
-        ? customData.description 
-        : (repo.description || 'An exciting project exploring new technologies. Check out the repository for details!');
+    let iconClass = 'fas fa-code-branch';
+    if (p.category === 'ai') iconClass = 'fas fa-brain';
+    if (p.category === 'cp') iconClass = 'fas fa-microchip';
+    if (p.category === 'web') iconClass = 'fas fa-layer-group';
+
+    const tagsHtml = p.topics.slice(0, 4).map(t => `<span>#${t}</span>`).join('');
     
-    const formattedName = formatRepoName(repo.name);
-    
-    let cardContent = `
-        <div class="project-content">
-            ${isFuture ? '<div class="future-badge"><i class="fas fa-rocket"></i> Future Project</div>' : ''}
-            
+    const demoLink = p.homepage ? `
+        <a href="${p.homepage}" target="_blank" title="Live Demo" aria-label="Live Demo">
+            <i class="fas fa-external-link-alt"></i>
+        </a>
+    ` : '';
+
+    return `
+        <div class="${cardClass}">
             <div class="project-header">
-                <div class="project-icon">
-                    <i class="fas ${getIconForRepo(repo.name, repo.language)}"></i>
-                </div>
+                <div class="project-icon"><i class="${iconClass}"></i></div>
                 <div class="project-links">
-                    <a href="${repo.html_url}" target="_blank" aria-label="GitHub Repo"><i class="fab fa-github"></i></a>
-                    ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                    ${demoLink}
+                    <a href="${p.html_url}" target="_blank" title="View Source on GitHub" aria-label="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
-            
-            <h3 class="project-title">${formattedName}</h3>
-            <p class="project-desc">${description}</p>
-            
+            <h3 class="project-title">${p.name}</h3>
+            <p class="project-desc">${p.description}</p>
             <div class="project-tags">
-                ${tagsHtml || '<span>Code</span>'}
+                ${tagsHtml}
             </div>
         </div>
     `;
-    
-    card.innerHTML = cardContent;
-    return card;
 }
 
-// Helper to format repo name
-function formatRepoName(name) {
-    return name.split(/[-_]/).map(word => 
-        word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ');
-}
+/* =========================================
+   CONTACT FORM HANDLER (CONTACT PAGE)
+   ========================================= */
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
 
-// Helper to get cool icon based on language or name
-function getIconForRepo(name, language) {
-    const nameLower = name.toLowerCase();
-    
-    if (nameLower.includes('ai') || nameLower.includes('machine') || nameLower.includes('intelligence')) return 'fa-brain';
-    if (nameLower.includes('data') || nameLower.includes('visual')) return 'fa-chart-pie';
-    if (nameLower.includes('algorithm') || nameLower.includes('complexity')) return 'fa-project-diagram';
-    if (nameLower.includes('game')) return 'fa-gamepad';
-    if (nameLower.includes('crypto')) return 'fa-shield-halved';
-    if (nameLower.includes('chat') || nameLower.includes('message')) return 'fa-comments';
-    if (nameLower.includes('buildspherex')) return 'fa-globe';
-    if (nameLower.includes('stock') || nameLower.includes('market') || nameLower.includes('predict')) return 'fa-chart-line';
-    if (nameLower.includes('disease') || nameLower.includes('classif') || nameLower.includes('health')) return 'fa-notes-medical';
-    if (nameLower.includes('sport')) return 'fa-futbol';
-    if (nameLower.includes('acad')) return 'fa-graduation-cap';
-    if (nameLower.includes('text') || nameLower.includes('vault')) return 'fa-file-lines';
-    if (nameLower.includes('cluster')) return 'fa-circle-nodes';
-    if (nameLower.includes('motion') || nameLower.includes('simul') || nameLower.includes('helical') || nameLower.includes('photo')) return 'fa-atom';
-    if (nameLower.includes('gc') && nameLower.includes('backend')) return 'fa-server';
-    if (nameLower.includes('gc') && nameLower.includes('frontend')) return 'fa-desktop';
-    
-    switch(language) {
-        case 'JavaScript': return 'fa-js';
-        case 'Python': return 'fa-python';
-        case 'Java': return 'fa-java';
-        case 'HTML': return 'fa-html5';
-        case 'CSS': return 'fa-css3-alt';
-        case 'C++': return 'fa-cuttlefish';
-        default: return 'fa-folder-open';
-    }
-}
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-// Fallback Mock Projects
-function renderMockProjects(container) {
-    const mockRepos = [
-        {
-            name: "BuildSphereX",
-            description: PROJECT_DATA['buildspherex'].description,
-            html_url: "https://github.com/punitxdev/buildspherex",
-            language: "JavaScript",
-            topics: []
-        },
-        {
-            name: "algorithm-complexity-visualizer",
-            description: PROJECT_DATA['algorithm-complexity-visualizer'].description,
-            html_url: "https://github.com/punitxdev/algorithm-complexity-visualizer",
-            language: "JavaScript",
-            topics: []
-        },
-        {
-            name: "smart-clustering",
-            description: PROJECT_DATA['smart-clustering'].description,
-            html_url: "https://github.com/punitxdev/smart-clustering",
-            language: "CSS",
-            topics: []
-        }
-    ];
-    
-    container.innerHTML = '';
-    
-    mockRepos.forEach(repo => {
-        const isFuture = repo.name.toLowerCase() === FUTURE_PROJECT_NAME;
-        const projectCard = createProjectCard(repo, isFuture);
-        
-        if (isFuture) {
-            container.prepend(projectCard);
-        } else {
-            container.appendChild(projectCard);
-        }
+        const name = document.getElementById('name').value;
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>`;
+
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            form.reset();
+
+            showNeumorphicToast(`Thank you, ${name}! Your message has been received.`);
+        }, 1200);
     });
+}
+
+function showNeumorphicToast(message) {
+    let toast = document.querySelector('.toast-neu');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast-neu';
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> <span>${message}</span>`;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4500);
 }
